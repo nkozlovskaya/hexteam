@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TableStat } from "../components/TableStat";
 import { useAppSelector } from "../hooks/redux-hooks";
 import { useActions } from "../hooks/useActions";
 import { Navbar } from "../components/Navbar";
 import { AddLinkForm } from "../components/AddLinkForm";
 import { Pagination } from "../components/Pagination";
+import { PaginationNextPage } from "../components/PaginationNextPage";
 
 const MainPage = () => {
   const filter = () => {};
@@ -22,13 +23,11 @@ const MainPage = () => {
     setText("");
   };
 
-  // const memoLinks = useCallback(
-
-  // );
-
-  useEffect(() => {
+  const memoLinks = useCallback(() => {
     getLinks([access_token, currentPage]);
   }, [access_token, currentPage]);
+
+  useEffect(() => memoLinks(), [memoLinks]);
 
   return (
     <>
@@ -38,11 +37,17 @@ const MainPage = () => {
         updateText={setText}
         handleAction={handleAddNewLink}
       />
-      <Pagination
-        nextPage={() => setCurrentPage(currentPage + 1)}
-        prevPage={() => setCurrentPage(currentPage - 1)}
-        firstPage={() => setCurrentPage(0)}
-      />
+
+      {currentPage === 0 ? (
+        <PaginationNextPage nextPage={() => setCurrentPage(currentPage + 1)} />
+      ) : (
+        <Pagination
+          nextPage={() => setCurrentPage(currentPage + 1)}
+          prevPage={() => setCurrentPage(currentPage - 1)}
+          firstPage={() => setCurrentPage(0)}
+        />
+      )}
+
       {loading ? (
         <div className="loader" />
       ) : (
@@ -69,7 +74,7 @@ const MainPage = () => {
           </tbody>
         </table>
       )}
-      {error && <h1 className="error">Ошибка загрузки</h1>}
+      {!links.length && <h1 className="error">Ошибка загрузки</h1>}
     </>
   );
 };
