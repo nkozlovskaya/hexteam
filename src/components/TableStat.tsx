@@ -2,15 +2,19 @@ import { FC } from "react";
 import { baseUrl } from "../api/apiService";
 import { ILink } from "../types";
 
-export const TableStat: FC<ILink> = ({ short, target, counter}) => {
+export const TableStat: FC<ILink> = ({
+  short,
+  target,
+  counter,
+  index,
+  curPage,
+}) => {
   const shortLink = `${baseUrl}/s/${short}`;
   const refresh = () => {};
   return (
     <>
       <tr>
-        <td>
-          
-       </td>
+        <td>{15 * curPage + index + 1}</td>
         <td>
           <a
             className="a__link-short"

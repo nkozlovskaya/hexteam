@@ -9,6 +9,7 @@ export interface ILink {
   target: string;
   counter: number;
   index: number;
+  curPage: number;
 }
 
 // export interface ISqueezeLink{
