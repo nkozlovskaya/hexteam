@@ -1,5 +1,7 @@
-import * as LinksActionCreators from "./actionLinks";
+import * as getLinksActionCreator from "./getLinksAction";
+import * as addNewLinkActionCreator from "./addNewLinkAction";
 
 export const ActionCreators = {
-  ...LinksActionCreators,
+  ...getLinksActionCreator,
+  ...addNewLinkActionCreator,
 };

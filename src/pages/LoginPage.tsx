@@ -1,16 +1,18 @@
-import { Login } from '../components/Login';
-import { Link } from 'react-router-dom';
+
+import { Login } from "../components/Login";
+import { Link } from "react-router-dom";
+import { Navbar } from "../components/Navbar";
 
 const LoginPage = () => {
-    return (
-        <div>
-            <h1>Login</h1>
-            <Login />
-            <p>
-                Or <Link to="/register">Register</Link>
-            </p>
-        </div>
-    )
-}
+  return (
+    <div>
+      <Navbar title="Login" />
+      <Login />
+      <p className="p_signup">
+        Or <Link to="/">Register</Link>
+      </p>
+    </div>
+  );
+};
 
-export default LoginPage
+export default LoginPage;

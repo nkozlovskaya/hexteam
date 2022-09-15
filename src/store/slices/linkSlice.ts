@@ -1,6 +1,7 @@
 import { AnyAction, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ILink } from "../../types";
-import { getLinks } from "../action_creators/actionLinks";
+import { addNewLink } from "../action_creators/addNewLinkAction";
+import { getLinks } from "../action_creators/getLinksAction";
 
 export interface LinkState {
   links: ILink[];
@@ -30,6 +31,12 @@ export const linkSlice = createSlice({
         state.links = action.payload;
         state.loading = false;
       })
+      .addCase(addNewLink.pending, (state) => {
+        state.error = "";
+      })
+      .addCase(addNewLink.fulfilled, (state, action) => {
+        state.links.push(action.payload);
+      })
       .addMatcher(isError, (state, action: PayloadAction<string>) => {
         state.error = action.payload;
         state.loading = false;
@@ -41,7 +48,5 @@ function isError(action: AnyAction) {
   return action.type.endsWith("rejected");
 }
 
-
 const linkReducer = linkSlice.reducer;
 export default linkReducer;
-

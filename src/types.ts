@@ -8,4 +8,9 @@ export interface ILink {
   short: string;
   target: string;
   counter: number;
+  index: number;
 }
+
+// export interface ISqueezeLink{
+//   link: string
+// }

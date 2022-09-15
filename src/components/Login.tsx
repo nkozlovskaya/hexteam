@@ -12,15 +12,14 @@ const Login: FC = () => {
   const handleLogin = (name: string, password: string) => {
     loginUser(name, password)
       .then(() => {
-        localStorage.setItem("jwt", access_token);
         dispatch(
           setUser({
             token: access_token,
-            loggedIn: true,
           })
         );
       })
       .catch(() => alert("Invalid user!"));
+    localStorage.setItem("token", access_token);
     nav("/main");
   };
 

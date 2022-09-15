@@ -2,11 +2,16 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ILink } from "../../types";
 import { baseUrl } from "../../api/apiService";
 
-export const getLinks = createAsyncThunk<ILink[], string, { rejectValue: string }>(
+export const getLinks = createAsyncThunk<
+  ILink[],
+  [string, number],
+  { rejectValue: string }
+>(
   "links/getLinks",
-  async (access_token: string, { rejectWithValue }) => {
+  async ([access_token, currentPage], { rejectWithValue }) => {
+    const offset = 15 * currentPage;
     const response = await fetch(
-      `${baseUrl}/statistics?order=desc_counter&offset=0&limit=0`,
+      `${baseUrl}statistics?order=desc_counter&offset=${offset}&limit=15`,
       {
         method: "GET",
         headers: {

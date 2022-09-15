@@ -13,7 +13,7 @@ const SignUp: FC = () => {
     }
     nav("/login");
   };
-  return <Form title="Register" handleClick={handleUser} />;
+  return <Form title={"Registration"} handleClick={handleUser} />;
 };
 
 export { SignUp };

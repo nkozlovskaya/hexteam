@@ -5,27 +5,31 @@ interface FormProps {
   handleClick: (name: string, password: string) => void;
 }
 
-const Form: FC<FormProps> = ({ title, handleClick }) => {
+const Form: FC<FormProps> = ({ handleClick }) => {
   const [name, setName] = useState("");
   const [pass, setPass] = useState("");
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={(e) => e.preventDefault()} className="form">
       <input
         type=" text"
+        className="form__input"
         required
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Имя пользователя"
+        placeholder="Username"
       />
       <input
         type="password"
+        className="form__input"
         required
         value={pass}
         onChange={(e) => setPass(e.target.value)}
-        placeholder="Пароль"
+        placeholder="Password"
       />
-      <button onClick={() => handleClick(name, pass)}>{title}</button>
+      <button className="form__btn" onClick={() => handleClick(name, pass)}>
+        Send
+      </button>
     </form>
   );
 };
