@@ -129,6 +129,10 @@ tr:last-child {
 
   cursor: pointer;
 }
+.span-copy {
+  color: red;
+  margin: 0 5px;
+}
 
 .table_link {
   width: 600px;
