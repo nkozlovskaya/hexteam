@@ -61,7 +61,9 @@ const MainPage = () => {
           filterShortAsc={() => setOrder("asc_short")}
         />
       )}
-      {!links.length && <h1 className="error">Ошибка загрузки: {error}</h1>}
+      {!links.length && !loading && (
+        <h1 className="error">Ошибка загрузки: {error}</h1>
+      )}
     </>
   );
 };
