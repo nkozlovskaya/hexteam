@@ -1,5 +1,7 @@
 # Тестовое задание в HexTeam
 
+SPA на React [Demo](https://nkozlovskaya.github.io/hexteam/).
+
 ## Frontend может состоять из нескольких страниц (главное наличие функциональности):
 
 - Страница регистрации
