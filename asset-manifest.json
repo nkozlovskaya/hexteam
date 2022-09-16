@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/hexteam/static/css/main.ca3d5503.css",
+    "main.js": "/hexteam/static/js/main.547a5eb0.js",
+    "index.html": "/hexteam/index.html",
+    "main.ca3d5503.css.map": "/hexteam/static/css/main.ca3d5503.css.map",
+    "main.547a5eb0.js.map": "/hexteam/static/js/main.547a5eb0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ca3d5503.css",
+    "static/js/main.547a5eb0.js"
+  ]
+}
