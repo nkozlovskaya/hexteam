@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { baseUrl } from "../api/apiService";
-import { ILink } from "../types";
+import { baseUrl } from "../../api/apiService";
+import { ILink } from "../../types";
 
 export const TableStat: FC<ILink> = ({
   short,

@@ -1,15 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
-import { TableStat } from "../components/TableStat";
+import { TableStat } from "../components/Table/TableStat";
 import { useAppSelector } from "../hooks/redux-hooks";
 import { useActions } from "../hooks/useActions";
 import { Navbar } from "../components/Navbar";
 import { AddLinkForm } from "../components/AddLinkForm";
 import { Pagination } from "../components/Pagination";
 import { PaginationNextPage } from "../components/PaginationNextPage";
+import { Table } from "../components/Table/Table";
 
 const MainPage = () => {
-  const filter = () => {};
-
   const [text, setText] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -28,6 +27,12 @@ const MainPage = () => {
   }, [access_token, currentPage]);
 
   useEffect(() => memoLinks(), [memoLinks]);
+
+  const filter = (field: string | number) => {
+    const copy = [...links];
+
+    copy.sort((a, b) => a[field] > b[field]?1:-1);
+  };
 
   return (
     <>
@@ -51,28 +56,7 @@ const MainPage = () => {
       {loading ? (
         <div className="loader" />
       ) : (
-        <table className="table">
-          <thead>
-            <tr>
-              <th>№</th>
-              <th onClick={filter}>Short</th>
-              <th onClick={filter}>Target</th>
-              <th onClick={filter}>Counter</th>
-            </tr>
-          </thead>
-          <tbody>
-            {links.map((data) => {
-              return (
-                <TableStat
-                  key={data.id}
-                  {...data}
-                  index={links.indexOf(data)}
-                  curPage={currentPage}
-                />
-              );
-            })}
-          </tbody>
-        </table>
+        <Table links={links} currentPage={currentPage} filter={filter} />
       )}
       {!links.length && <h1 className="error">Ошибка загрузки</h1>}
     </>
