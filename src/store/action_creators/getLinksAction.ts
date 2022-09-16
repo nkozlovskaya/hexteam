@@ -4,14 +4,14 @@ import { baseUrl } from "../../api/apiService";
 
 export const getLinks = createAsyncThunk<
   ILink[],
-  [string, number],
+  [string, number, string],
   { rejectValue: string }
 >(
   "links/getLinks",
-  async ([access_token, currentPage], { rejectWithValue }) => {
+  async ([access_token, currentPage, order], { rejectWithValue }) => {
     const offset = 15 * currentPage;
     const response = await fetch(
-      `${baseUrl}statistics?order=desc_counter&offset=${offset}&limit=15`,
+      `${baseUrl}statistics?order=${order}&offset=${offset}&limit=15`,
       {
         method: "GET",
         headers: {

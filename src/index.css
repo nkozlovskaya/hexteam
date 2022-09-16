@@ -123,6 +123,13 @@ tr:last-child {
   border-bottom: none;
 }
 
+.span {
+  margin: 0 4px;
+  display: inline-block;
+
+  cursor: pointer;
+}
+
 .table_link {
   width: 600px;
   overflow: hidden;

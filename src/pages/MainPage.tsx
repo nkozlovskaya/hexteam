@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import { TableStat } from "../components/Table/TableStat";
 import { useAppSelector } from "../hooks/redux-hooks";
 import { useActions } from "../hooks/useActions";
 import { Navbar } from "../components/Navbar";
@@ -11,6 +10,7 @@ import { Table } from "../components/Table/Table";
 const MainPage = () => {
   const [text, setText] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
+  const [order, setOrder] = useState("desc_counter");
 
   const { links, loading, error } = useAppSelector((state) => state.links);
   const { access_token } = useAppSelector((state) => state.user);
@@ -23,16 +23,10 @@ const MainPage = () => {
   };
 
   const memoLinks = useCallback(() => {
-    getLinks([access_token, currentPage]);
-  }, [access_token, currentPage]);
+    getLinks([access_token, currentPage, order]);
+  }, [access_token, currentPage, order]);
 
   useEffect(() => memoLinks(), [memoLinks]);
-
-  const filter = (field: string | number) => {
-    const copy = [...links];
-
-    copy.sort((a, b) => a[field] > b[field]?1:-1);
-  };
 
   return (
     <>
@@ -56,9 +50,18 @@ const MainPage = () => {
       {loading ? (
         <div className="loader" />
       ) : (
-        <Table links={links} currentPage={currentPage} filter={filter} />
+        <Table
+          links={links}
+          currentPage={currentPage}
+          filterCounterDesc={() => setOrder("desc_counter")}
+          filterCounterAsc={() => setOrder("asc_counter")}
+          filterTargetDesc={() => setOrder("desc_target")}
+          filterTargetAsc={() => setOrder("asc_target")}
+          filterShortDesc={() => setOrder("desc_short")}
+          filterShortAsc={() => setOrder("asc_short")}
+        />
       )}
-      {!links.length && <h1 className="error">Ошибка загрузки</h1>}
+      {!links.length && <h1 className="error">Ошибка загрузки: {error}</h1>}
     </>
   );
 };
