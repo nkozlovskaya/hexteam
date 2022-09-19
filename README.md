@@ -2,7 +2,7 @@
 
 SPA на React [Demo](https://nkozlovskaya.github.io/hexteam).
 
-Для сборки проекта:
+### Для сборки проекта:
 npm i - для установки необходимых node модулей
 npm start - для сборки в режиме разработчика
 npm build - для сборки в продакшен
