@@ -1,6 +1,6 @@
 # Тестовое задание в HexTeam
 
-SPA на React [Demo](https://nkozlovskaya.github.io/hexteam).
+SPA на React [Demo](https://nkozlovskaya.github.io/hexteam/).
 
 ### Для сборки проекта:
 1. npm i - для установки необходимых node модулей;
